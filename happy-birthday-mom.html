@@ -1,0 +1,755 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8" />
+  <title>สุขสันต์วันเกิดมี๊ จากหนู 💖</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- ฟอนต์สวย ๆ จาก Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Sriracha&family=Prompt:wght@300;400;600;700&display=swap" rel="stylesheet" />
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Prompt', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      min-height: 100vh;
+      overflow-x: hidden;
+      color: #fff;
+      background: radial-gradient(circle at top, #ffb6ff 0, #b69cff 25%, #6c5ce7 55%, #1b1b3a 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    /* พื้นหลังลูกโป่งลอย */
+    .balloon-bg {
+      position: fixed;
+      inset: 0;
+      overflow: hidden;
+      z-index: -1;
+      pointer-events: none;
+    }
+
+    .balloon {
+      position: absolute;
+      width: 40px;
+      height: 55px;
+      border-radius: 50% 50% 45% 55%;
+      background: rgba(255, 255, 255, 0.15);
+      box-shadow: 0 0 15px rgba(255, 255, 255, 0.4);
+      animation: float 16s linear infinite;
+    }
+
+    .balloon::after {
+      content: "";
+      position: absolute;
+      left: 50%;
+      top: 100%;
+      width: 2px;
+      height: 80px;
+      background: rgba(255, 255, 255, 0.3);
+      transform: translateX(-50%);
+    }
+
+    @keyframes float {
+      0% {
+        transform: translateY(110vh) translateX(0);
+      }
+      100% {
+        transform: translateY(-20vh) translateX(40px);
+      }
+    }
+
+    /* กล่องหลัก */
+    .wrapper {
+      max-width: 1000px;
+      width: 100%;
+    }
+
+    .card {
+      background: rgba(14, 14, 40, 0.8);
+      border-radius: 28px;
+      padding: 24px;
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      box-shadow:
+        0 10px 40px rgba(0, 0, 0, 0.6),
+        0 0 50px rgba(255, 105, 180, 0.5);
+      backdrop-filter: blur(18px);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card::before {
+      content: "";
+      position: absolute;
+      width: 350px;
+      height: 350px;
+      background: radial-gradient(circle, rgba(255, 170, 255, 0.4), transparent 60%);
+      top: -120px;
+      right: -80px;
+      opacity: 0.7;
+      pointer-events: none;
+    }
+
+    .card::after {
+      content: "";
+      position: absolute;
+      width: 240px;
+      height: 240px;
+      background: radial-gradient(circle, rgba(255, 255, 255, 0.22), transparent 70%);
+      bottom: -60px;
+      left: -40px;
+      opacity: 0.7;
+      pointer-events: none;
+    }
+
+    .card-inner {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: minmax(0, 3fr) minmax(0, 2.4fr);
+      gap: 22px;
+      align-items: center;
+    }
+
+    @media (max-width: 780px) {
+      .card-inner {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .headline {
+      text-transform: uppercase;
+      font-size: 13px;
+      letter-spacing: 0.2em;
+      color: #ffdfeb;
+      opacity: 0.9;
+      margin-bottom: 6px;
+    }
+
+    .title {
+      font-family: 'Sriracha', cursive;
+      font-size: clamp(30px, 5vw, 42px);
+      line-height: 1.25;
+      margin-bottom: 8px;
+      text-shadow:
+        0 0 12px rgba(255, 183, 255, 0.9),
+        0 0 26px rgba(255, 119, 204, 0.9);
+    }
+
+    .subtitle {
+      font-size: 17px;
+      color: #f8eaff;
+      opacity: 0.9;
+      margin-bottom: 18px;
+    }
+
+    .mini-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 3px 10px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.26);
+      font-size: 12px;
+      margin-bottom: 14px;
+      backdrop-filter: blur(10px);
+    }
+
+    .mini-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 999px;
+      background: #ff99cc;
+      box-shadow: 0 0 10px #ff99cc;
+    }
+
+    .features {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 18px;
+    }
+
+    .pill {
+      padding: 5px 11px;
+      border-radius: 999px;
+      border: 1px dashed rgba(255, 255, 255, 0.3);
+      font-size: 12px;
+      color: #ffe6ff;
+      background: rgba(255, 255, 255, 0.08);
+    }
+
+    .btn-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      align-items: center;
+    }
+
+    .primary-btn {
+      border: none;
+      outline: none;
+      cursor: pointer;
+      padding: 10px 22px;
+      border-radius: 999px;
+      font-size: 14px;
+      font-weight: 600;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+      background: linear-gradient(135deg, #ff8ad4, #ffb36b);
+      color: #2b1030;
+      box-shadow:
+        0 0 20px rgba(255, 149, 214, 0.9),
+        0 12px 28px rgba(0, 0, 0, 0.7);
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .primary-btn span.sparkle {
+      font-size: 16px;
+    }
+
+    .primary-btn::after {
+      content: "";
+      position: absolute;
+      width: 80px;
+      height: 160%;
+      top: -20%;
+      left: -40%;
+      background: linear-gradient(
+        120deg,
+        transparent,
+        rgba(255, 255, 255, 0.9),
+        transparent
+      );
+      transform: translateX(-120%) rotate(18deg);
+      transition: transform 0.7s ease;
+    }
+
+    .primary-btn:hover::after {
+      transform: translateX(170%) rotate(18deg);
+    }
+
+    .primary-btn:disabled {
+      opacity: 0.8;
+      cursor: default;
+      box-shadow:
+        0 0 13px rgba(255, 222, 255, 0.7),
+        0 10px 24px rgba(0, 0, 0, 0.6);
+    }
+
+    .hint-text {
+      font-size: 12px;
+      opacity: 0.8;
+    }
+
+    .hint-text span {
+      opacity: 1;
+    }
+
+    /* แผงขวา – เค้ก / การ์ด */
+    .scene {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 12px;
+    }
+
+    .cake-card {
+        
+      background: linear-gradient(145deg, #2b1b3d, #130b1f);
+      border-radius: 22px;
+      padding: 18px 16px 22px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      box-shadow:
+        0 15px 40px rgba(0, 0, 0, 0.8),
+        0 0 40px rgba(255, 119, 204, 0.7);
+      position: relative;
+      overflow: hidden;
+      width: 100%;
+      max-width: 320px;
+      transform-origin: center;
+      animation: floatCard 5s ease-in-out infinite;
+    }
+
+    .cake-card::before {
+      content: "For you 💌";
+      position: absolute;
+      top: 10px;
+      right: 14px;
+      font-size: 11px;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: rgba(255, 221, 255, 0.6);
+    }
+
+    @keyframes floatCard {
+      0%, 100% { transform: translateY(0px) rotate(-0.2deg); }
+      50% { transform: translateY(-6px) rotate(0.3deg); }
+    }
+
+    .cake {
+      margin-top: 16px;
+      text-align: center;
+    }
+
+    .cake-base {
+      width: 76%;
+      margin: 0 auto;
+      height: 18px;
+      border-radius: 999px;
+      background: linear-gradient(90deg, #ff9ad7, #ffd1a1);
+      box-shadow:
+        0 8px 20px rgba(0, 0, 0, 0.7),
+        0 0 16px rgba(255, 161, 214, 0.9);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cake-base::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image: radial-gradient(circle at 10px 4px, rgba(255, 255, 255, 0.65), transparent 40%);
+      opacity: 0.7;
+    }
+
+    .cake-layer {
+      width: 63%;
+      margin: 0 auto;
+      height: 26px;
+      border-radius: 18px 18px 14px 14px;
+      background: linear-gradient(135deg, #ff8ad4, #ff6fb9);
+      position: relative;
+      top: -14px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.6);
+      overflow: hidden;
+    }
+
+    .cake-layer::before {
+      content: "";
+      position: absolute;
+      width: 140%;
+      height: 24px;
+      left: -20%;
+      top: 3px;
+      background: radial-gradient(circle, #ffe3ff 0, transparent 55%);
+      opacity: 0.8;
+    }
+
+    .cake-drip {
+      position: absolute;
+      width: 12px;
+      height: 16px;
+      border-radius: 0 0 12px 12px;
+      background: rgba(255, 230, 255, 0.95);
+      top: 14px;
+      left: 24%;
+      box-shadow: 0 0 6px rgba(255, 255, 255, 0.8);
+    }
+
+    .cake-drip:nth-child(2) { left: 48%; height: 20px; }
+    .cake-drip:nth-child(3) { left: 70%; height: 17px; }
+
+    .candle {
+      width: 10px;
+      height: 26px;
+      background: repeating-linear-gradient(
+        -45deg,
+        #ffe0ff,
+        #ffe0ff 4px,
+        #ff7ccc 4px,
+        #ff7ccc 8px
+      );
+      margin: 0 auto;
+      border-radius: 999px;
+      position: relative;
+      top: -28px;
+      box-shadow: 0 0 6px rgba(255, 255, 255, 0.7);
+    }
+
+    .flame {
+      position: absolute;
+      bottom: 24px;
+      left: 50%;
+      width: 18px;
+      height: 26px;
+      transform: translateX(-50%);
+      background: radial-gradient(circle at 50% 30%, #fff7c6 0, #ffd16a 35%, #ff8c3a 70%, transparent 72%);
+      border-radius: 50% 50% 50% 50%;
+      box-shadow:
+        0 0 16px rgba(255, 233, 172, 1),
+        0 0 30px rgba(255, 214, 102, 1);
+      animation: flicker 1.5s ease-in-out infinite;
+    }
+
+    @keyframes flicker {
+      0%, 100% { transform: translate(-50%, 0) scale(1); }
+      40% { transform: translate(-52%, -2px) scale(1.04); }
+      70% { transform: translate(-48%, 1px) scale(0.97); }
+    }
+
+    .cake-caption {
+      margin-top: -6px;
+      font-size: 13px;
+      color: #ffecff;
+    }
+
+    .tiny-note {
+      margin-top: 6px;
+      font-size: 11px;
+      opacity: 0.7;
+    }
+
+    /* กล่องข้อความอวยพร (พิมพ์ทีละตัว) */
+    .message-box {
+      margin-top: 20px;
+      padding: 14px 12px;
+      border-radius: 18px;
+      background: rgba(3, 2, 12, 0.75);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      max-height: 220px;
+      overflow-y: auto;
+      scrollbar-width: thin;
+      scrollbar-color: rgba(255, 255, 255, 0.4) transparent;
+    }
+
+    .message-box::-webkit-scrollbar {
+      width: 6px;
+    }
+
+    .message-box::-webkit-scrollbar-thumb {
+      background: rgba(255, 255, 255, 0.6);
+      border-radius: 999px;
+    }
+
+    .message-line {
+      margin-bottom: 8px;
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    .message-line strong {
+      color: #ffeafc;
+    }
+
+    .signature {
+      margin-top: 12px;
+      font-family: 'Sriracha', cursive;
+      font-size: 18px;
+      text-align: right;
+      color: #ffd5ff;
+    }
+
+    .signature span {
+      font-size: 20px;
+    }
+
+    /* Confetti */
+    .confetti-piece {
+      position: fixed;
+      width: 8px;
+      height: 14px;
+      border-radius: 2px;
+      top: -20px;
+      animation: confetti-fall linear forwards;
+      opacity: 0.9;
+      z-index: 999;
+      pointer-events: none;
+    }
+
+    @keyframes confetti-fall {
+      0% {
+        transform: translateY(0) rotateZ(0deg) rotateX(0deg);
+      }
+      100% {
+        transform: translateY(110vh) rotateZ(320deg) rotateX(180deg);
+      }
+    }
+
+    /* สถานะเมื่อตัวการ์ดถูกเปิด */
+    .card.card-opened {
+      box-shadow:
+        0 0 40px rgba(255, 170, 255, 0.9),
+        0 0 60px rgba(255, 227, 186, 0.9),
+        0 15px 45px rgba(0, 0, 0, 0.9);
+      transform: translateY(-1px);
+      transition: box-shadow 0.4s ease, transform 0.4s ease;
+    }
+
+    /* ปรับสำหรับมือถือ */
+    @media (max-width: 480px) {
+      .card {
+        padding: 18px 16px;
+      }
+      .title {
+        font-size: 26px;
+      }
+      .subtitle {
+        font-size: 15px;
+      }
+      .cake-card {
+        max-width: 100%;
+      }
+      .btn-row {
+        gap: 8px;
+      }
+      .primary-btn {
+        width: 100%;
+        justify-content: center;
+      }
+      .hint-text {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- ลูกโป่งพื้นหลังแบบสุ่มด้วย JS -->
+  <div class="balloon-bg" id="balloonBg"></div>
+
+  <div class="wrapper">
+    <div class="card" id="mainCard">
+      <div class="card-inner">
+        <!-- ฝั่งซ้าย ข้อความเปิด -->
+        <div>
+          <div class="headline">Special day for the most special person</div>
+          <div class="title">สุขสันต์วันเกิดนะมี๊ของหนู🎂</div>
+          <p class="subtitle">
+            วันนี้หนูอยากให้มี๊รู้ว่า… โลกของหนูสว่างขึ้น อบอุ่นขึ้น มีความหมายขึ้น
+            ก็เพราะว่ามี๊อยู่ในโลกของหนูนี่แหละ 💗
+          </p>
+
+          <div class="mini-tag">
+            <span class="mini-dot"></span>
+            <span>เว็บนี้ทำเพื่อมี๊คนเดียวในโลกเลยนะ 😳</span>
+          </div>
+
+         
+
+          <div class="btn-row">
+            <button class="primary-btn" id="revealBtn">
+              <span class="sparkle">✨</span>
+              <span>คลิกเพื่อเปิดคำอวยพรจากหนู</span>
+            </button>
+            <p class="hint-text">
+              <span>Tip:</span> เปิดแล้วอ่านให้จบทุกบรรทัดนะ มีข้อความลับจากใจหนูอยู่ด้านล่างสุด จาก Exsos High💌
+            </p>
+          </div>
+        </div>
+
+        <!-- ฝั่งขวา เค้ก + ข้อความ -->
+        <div class="scene">
+          <div class="cake-card">
+            <div style="text-align:center;">
+              <div style="font-size:12px; letter-spacing:0.18em; text-transform:uppercase; opacity:0.8;">
+                Happy Birthday
+              </div>
+              <div style="font-size:20px; font-weight:600; margin-top:4px; color:#ffe2ff;">
+                Emmie Onitz
+              </div>
+            </div>
+
+            <div class="cake">
+              <div class="flame"></div>
+              <div class="candle"></div>
+              <div class="cake-layer">
+                <div class="cake-drip"></div>
+                <div class="cake-drip"></div>
+                <div class="cake-drip"></div>
+              </div>
+              <div class="cake-base"></div>
+
+              <p1 class="cake-caption">
+                หนูขอให้วันนี้เป็นวันเกิดที่มี๊ยิ้มได้ทั้งวันเลยนะ 💕
+              </p1>
+              <p class="tiny-note">
+                * ถ้าวันไหนเหนื่อยมาก ๆ กลับมาเปิดเว็บนี้ดูได้เสมอเลย มีหนูคอยอยู่ข้าง ๆ ตรงนี้แหละ 🤍
+              </p>
+            </div>
+
+            <div class="message-box" id="messageBox">
+              <!-- ข้อความจะถูกพิมพ์ทีละตัวด้วย JS -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ถ้าอยากใส่เพลง ให้เตรียมไฟล์ mp3 เองแล้วเปลี่ยน src ด้านล่างนี้ -->
+  <!--
+  <audio id="bgMusic" loop>
+    <source src="your-music-file.mp3" type="audio/mpeg" />
+  </audio>
+  -->
+
+  <script>
+    // สร้างลูกโป่งพื้นหลังแบบสุ่ม
+    (function createBalloons() {
+      const container = document.getElementById('balloonBg');
+      const balloonCount = 18;
+      for (let i = 0; i < balloonCount; i++) {
+        const balloon = document.createElement('div');
+        balloon.className = 'balloon';
+        const left = Math.random() * 100;
+        const delay = Math.random() * 12;
+        const duration = 14 + Math.random() * 10;
+        balloon.style.left = left + '%';
+        balloon.style.animationDelay = delay + 's';
+        balloon.style.animationDuration = duration + 's';
+        container.appendChild(balloon);
+      }
+    })();
+
+    const messageBox = document.getElementById('messageBox');
+    const revealBtn = document.getElementById('revealBtn');
+    const mainCard = document.getElementById('mainCard');
+    // const bgMusic = document.getElementById('bgMusic'); // เปิดใช้ถ้าใส่เพลงเองแล้ว
+
+    // ✅ ข้อความอวยพร สามารถแก้ไขให้เป็นสไตล์ของหนูเองได้เลย
+    const messageLines = [
+      "มี๊รู้มั้ย… ว่าหนูดีใจแค่ไหนที่ได้เกิดมาในโลกที่มี 'มี๊' อยู่ด้วย 💗",
+      "ไม่ว่าหนูจะเจอวันที่ดีมาก ๆ หรือวันที่แย่สุด ๆ คนแรกที่หนูนึกถึงตลอดก็คือมี๊เลยนะ",
+      "",
+      "หนูขอบคุณมี๊สำหรับทุกอย่างเลย ขอบคุณที่เข้าใจหนูในแบบที่ไม่มีใครเข้าใจได้เท่ามี๊",
+      "ขอบคุณที่คอยอยู่ข้าง ๆ ตอนหนูล้มลง คอยดีใจกับหนูเวลาเหลือเชื่อว่าหนูทำได้",
+      "",
+      "หนูอาจจะไม่ได้เก่งที่สุด อาจจะดื้อบ้าง งอแงบ้าง ทำให้มี๊เหนื่อยใจบ้าง",
+      "แต่หนูอยากให้มี๊รู้ไว้เลยว่า… ทุกลมหายใจของหนู มี 'ความรักที่มีต่อมี๊' อยู่ในนั้นเสมอ 🫶🏻",
+      "",
+      "ขอให้ปีนี้เป็นปีที่มี๊มีความสุขแบบเน้น ๆ เลยนะ",
+      "มีแต่คนดี ๆ เรื่องดี ๆ โอกาสดี ๆ เข้ามาในชีวิต",
+      "สุขภาพแข็งแรง ไม่มีเรื่องให้ต้องกังวลเยอะเกินไป",
+      "แล้วก็ขอให้ทุกความเหนื่อยล้าของมี๊ ถูกแทนที่ด้วยความภูมิใจในตัวเองและในตัวหนู 💫",
+      "",
+      "หนูสัญญาว่าหนูจะตั้งใจใช้ชีวิต ตั้งใจทำอนาคตให้ดีขึ้นเรื่อย ๆ",
+      "เพื่อให้มี๊สบายใจว่าวันหนึ่ง หนูจะดูแลตัวเองได้ และดูแลมี๊ได้แบบที่มี๊สมควรได้รับที่สุด 🤍",
+      "",
+      "ถ้าวันไหนมี๊รู้สึกว่าโลกมันเสียงดังเกินไป เหนื่อยเกินไป เหงาเกินไป",
+      "อย่าลืมนะว่า… มีคนคนนึงที่รักมี๊มาก ๆ มากแบบที่อธิบายเป็นคำพูดไม่ได้",
+      "คนนั้นก็คือ 'หนู' นี่แหละ 🥺💖",
+      "",
+      "สุขสันต์วันเกิดนะคะมี๊ของหนู",
+      "ขอบคุณที่เกิดมาเป็นมี๊ของหนู และขอบคุณที่ยอมให้หนูเป็นลูก/เป็นเด็กดื้อของมี๊แบบนี้ตลอดมา",
+      "",
+      "ไม่ว่าจะผ่านไปอีกกี่ปี… ‘มี๊’ จะยังเป็นคนที่พิเศษที่สุดในโลกของหนูเสมอเลย 🌎✨"
+    ];
+
+    let currentLineIndex = 0;
+    let currentCharIndex = 0;
+    let typing = false;
+
+    function typeMessage() {
+      if (currentLineIndex >= messageLines.length) {
+        // พิมพ์จบแล้ว ใส่ลายเซ็น
+        const sig = document.createElement('div');
+        sig.className = 'signature';
+        sig.innerHTML = "ด้วยรักทั้งหมดในหัวใจของหนู<br><span>— หนูของมี๊ 💌</span>";
+        messageBox.appendChild(sig);
+        return;
+      }
+
+      const currentLineText = messageLines[currentLineIndex];
+
+      // ถ้าเป็นบรรทัดว่าง ให้ขึ้นบรรทัดใหม่เลย
+      if (currentLineText === "") {
+        const br = document.createElement('div');
+        br.className = 'message-line';
+        br.innerHTML = "&nbsp;";
+        messageBox.appendChild(br);
+        currentLineIndex++;
+        currentCharIndex = 0;
+        setTimeout(typeMessage, 200);
+        messageBox.scrollTop = messageBox.scrollHeight;
+        return;
+      }
+
+      // ถ้าเพิ่งเริ่มบรรทัดใหม่ สร้าง element สำหรับบรรทัดนั้น
+      let lineElement;
+      if (currentCharIndex === 0) {
+        lineElement = document.createElement('div');
+        lineElement.className = 'message-line';
+        lineElement.dataset.lineIndex = currentLineIndex;
+        messageBox.appendChild(lineElement);
+      } else {
+        lineElement = messageBox.querySelector(
+          '.message-line[data-line-index="' + currentLineIndex + '"]'
+        );
+      }
+
+      // เพิ่มตัวอักษรถัดไป
+      const nextChar = currentLineText.charAt(currentCharIndex);
+      lineElement.textContent += nextChar;
+      currentCharIndex++;
+
+      messageBox.scrollTop = messageBox.scrollHeight;
+
+      if (currentCharIndex < currentLineText.length) {
+        setTimeout(typeMessage, 40 + Math.random() * 40); // ความเร็วการพิมพ์
+      } else {
+        currentLineIndex++;
+        currentCharIndex = 0;
+        setTimeout(typeMessage, 250);
+      }
+    }
+
+    // สร้าง confetti
+    function launchConfetti() {
+      const colors = ['#ff9ff3', '#feca57', '#54a0ff', '#5ef1a6', '#ff6b6b', '#f368e0'];
+      const pieces = 150;
+
+      for (let i = 0; i < pieces; i++) {
+        const piece = document.createElement('div');
+        piece.className = 'confetti-piece';
+        const left = Math.random() * 100;
+        const duration = 3 + Math.random() * 4;
+        const delay = Math.random() * 1.5;
+        const rotate = Math.random() * 360;
+        const bg = colors[Math.floor(Math.random() * colors.length)];
+
+        piece.style.left = left + 'vw';
+        piece.style.background = bg;
+        piece.style.animationDuration = duration + 's';
+        piece.style.animationDelay = delay + 's';
+        piece.style.transform = 'rotate(' + rotate + 'deg)';
+
+        document.body.appendChild(piece);
+
+        // ลบออกเมื่อจบ animation
+        setTimeout(() => {
+          piece.remove();
+        }, (duration + delay) * 1000 + 500);
+      }
+    }
+
+    revealBtn.addEventListener('click', () => {
+      if (typing) return;
+      typing = true;
+      revealBtn.disabled = true;
+      mainCard.classList.add('card-opened');
+
+      // อยากให้เปิดเพลง ให้ uncomment ส่วนนี้ และเตรียมไฟล์ mp3 ตามที่ตั้ง src ไว้
+      // if (bgMusic) {
+      //   bgMusic.play().catch(() => {});
+      // }
+
+      launchConfetti();
+      typeMessage();
+    });
+  </script>
+</body>
+</html>
